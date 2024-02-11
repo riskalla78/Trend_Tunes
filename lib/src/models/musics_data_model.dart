@@ -1,4 +1,4 @@
-class Internacional {
+class Artist {
   String? id;
   String? name;
   String? url;
@@ -8,7 +8,7 @@ class Internacional {
   String? views;
   String? rank;
 
-  Internacional(
+  Artist(
       {this.id,
       this.name,
       this.url,
@@ -18,7 +18,7 @@ class Internacional {
       this.views,
       this.rank});
 
-  Internacional.fromJson(Map<String, dynamic> json) {
+  Artist.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     url = json['url'];

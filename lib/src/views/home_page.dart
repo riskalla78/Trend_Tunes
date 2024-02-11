@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/home_controller.dart';
+import 'package:flutter_application_1/src/repositories/music_repositorie.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
+  final MusicRepositorie _repository = MusicRepositorie();
   bool isListVisible = false;
+  String currentTitle = "";
 
   _success() {
     return isListVisible
@@ -20,7 +23,17 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(
                   height:
-                      50, // Ajuste a altura do Container conforme necessário
+                      30, // Ajuste a altura do Container conforme necessário
+                ),
+                Center(
+                  child: Text(
+                    currentTitle,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+                const SizedBox(
+                  height:
+                      30, // Ajuste a altura do Container conforme necessário
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -45,7 +58,24 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )
-        : Container(); // Mostra uma lista vazia se não estiver visível
+        : const Center(
+            child: Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume!',
+                    style: TextStyle(fontSize: 25), // Set the desired font size
+                  ),
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar.',
+                    style: TextStyle(fontSize: 20), // Set the desired font size
+                  ),
+                ],
+              ),
+            ),
+          );
   }
 
   _error() {
@@ -54,7 +84,10 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           setState(() {
             isListVisible = true;
-            controller.start();
+            controller.start(() async {
+              return await _repository.fetchMusicData(
+                  _repository.urlAll, "All");
+            });
           });
         },
         style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
@@ -87,8 +120,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    controller.start();
+    // Forneça uma função anônima que chama fetchMusicData
+    controller.start(() async {
+      return await _repository.fetchMusicData(_repository.urlAll, "all");
+    });
   }
+
+  // ...
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +136,15 @@ class _HomePageState extends State<HomePage> {
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.music_note_rounded),
+            Icon(
+              Icons.music_note_rounded,
+              color: Colors.white,
+            ),
             SizedBox(width: 8),
-            Text('Hits do verão'),
+            Text(
+              'TrendTunes',
+              style: TextStyle(color: Colors.white),
+            ),
           ],
         ),
       ),
@@ -110,16 +154,66 @@ class _HomePageState extends State<HomePage> {
           return stateManagement(controller.state.value);
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        onPressed: () {
-          setState(() {
-            isListVisible = true;
-            controller.start();
-          });
-        },
-        child: const Icon(Icons.refresh_outlined),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Colors.blue,
+            onPressed: () {
+              setState(() {
+                isListVisible = true;
+                currentTitle = "Ranking Geral dos Artistas";
+                controller.start(() async {
+                  return await _repository.fetchMusicData(
+                      _repository.urlAll, "all");
+                });
+              });
+            },
+            child: const Icon(Icons.public_outlined),
+          ),
+          const SizedBox(width: 16.0), // Espaçamento entre os botões
+          FloatingActionButton(
+            backgroundColor: Colors.green,
+            onPressed: () {
+              setState(() {
+                isListVisible = true;
+                currentTitle = "Ranking dos Artistas Nacionais";
+                controller.start(() async {
+                  return await _repository.fetchMusicData(
+                      _repository.urlNacional, "nacional");
+                });
+              });
+            },
+            child: const Icon(Icons.flag),
+          ),
+          const SizedBox(width: 16.0),
+          FloatingActionButton(
+            backgroundColor: Colors.yellow,
+            onPressed: () {
+              setState(() {
+                currentTitle = "Ranking dos Artistas Internacionais";
+                isListVisible = true;
+                controller.start(() async {
+                  return await _repository.fetchMusicData(
+                      _repository.urlInternacional, "internacional");
+                });
+              });
+            },
+            child: const Icon(Icons.flag_outlined),
+          ),
+          const SizedBox(width: 16.0),
+          FloatingActionButton(
+            backgroundColor: Colors.red,
+            onPressed: () {
+              setState(() {
+                isListVisible = false;
+              });
+            },
+            child: const Icon(Icons.restart_alt),
+          ),
+        ],
       ),
     );
   }
+// ...
 }
