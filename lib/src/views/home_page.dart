@@ -53,7 +53,16 @@ class _HomePageState extends State<HomePage> {
                           ),
                           title: InkWell(
                             onTap: () {
-                              launch(music.url ?? "No Url");
+                              if (music.url != null) {
+                                String? urlNonNull = music
+                                    .url; // Atribuir a variável não nula a uma nova variável
+                                Uri url = Uri.parse(urlNonNull!);
+                                // Agora você pode usar 'url' como um objeto Uri.
+                                launchUrl(url);
+                              } else {
+                                // Lide com o caso em que a string da URL é nula.
+                                print("A string da URL é nula.");
+                              }
                             },
                             child: Text(
                                 '${index + 1}º ${music.name ?? "No Name"} - ${music.views ?? "Sem visualizações disponíveis"} Views'),
