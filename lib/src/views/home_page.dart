@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/controller/home_controller.dart';
 import 'package:flutter_application_1/src/repositories/music_repositorie.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,17 +42,22 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       var music = controller.musicdata[index];
                       return ListTile(
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            music.picSmall ?? "No Pic",
-                            width: 40,
-                            height: 40,
-                            fit: BoxFit.cover,
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              music.picSmall ?? "No Pic",
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        title: Text(music.name ?? "No Name"),
-                      );
+                          title: InkWell(
+                            onTap: () {
+                              launch(music.url ?? "No Url");
+                            },
+                            child: Text(
+                                '${index + 1}º ${music.name ?? "No Name"} - ${music.views ?? "Sem visualizações disponíveis"} Views'),
+                          ));
                     },
                   ),
                 ),
@@ -69,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar.',
+                    'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar. Toque em um item da lista para ir para a página do artista.',
                     style: TextStyle(fontSize: 20), // Set the desired font size
                   ),
                 ],

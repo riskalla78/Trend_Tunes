@@ -11,7 +11,7 @@ class Artist {
   Artist(
       {this.id,
       this.name,
-      this.url,
+      required this.url,
       this.picSmall,
       this.picMedium,
       this.uniques,
