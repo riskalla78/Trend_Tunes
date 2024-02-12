@@ -3,6 +3,8 @@ import 'package:flutter_application_1/src/controller/home_controller.dart';
 import 'package:flutter_application_1/src/repositories/music_repositorie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+//Declaração da classe HomePage, que é um StatefulWidget. createState() retorna uma instância de _HomePageState,
+//que é a classe de estado para esta tela.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -10,21 +12,23 @@ class HomePage extends StatefulWidget {
   createState() => _HomePageState();
 }
 
+//Declaração da classe _HomePageState, que é a classe de estado para a tela HomePage. São criadas instâncias do HomeController e MusicRepositorie,
+//além de variáveis para controlar a visibilidade da lista e o título atual.
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
   final MusicRepositorie _repository = MusicRepositorie();
   bool isListVisible = false;
   String currentTitle = "";
-
+//Métodos privados para renderizar diferentes partes da tela com base no estado da interface do usuário
+//(_success, _error, _loading, _start).
   _success() {
     return isListVisible
         ? SizedBox(
-            height: 500, // Ajuste a altura conforme necessário
+            height: 500,
             child: Column(
               children: [
                 const SizedBox(
-                  height:
-                      30, // Ajuste a altura do Container conforme necessário
+                  height: 30,
                 ),
                 Center(
                   child: Text(
@@ -33,8 +37,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(
-                  height:
-                      30, // Ajuste a altura do Container conforme necessário
+                  height: 30,
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -54,13 +57,11 @@ class _HomePageState extends State<HomePage> {
                           title: InkWell(
                             onTap: () {
                               if (music.url != null) {
-                                String? urlNonNull = music
-                                    .url; // Atribuir a variável não nula a uma nova variável
+                                String? urlNonNull = music.url;
                                 Uri url = Uri.parse(urlNonNull!);
-                                // Agora você pode usar 'url' como um objeto Uri.
+
                                 launchUrl(url);
                               } else {
-                                // Lide com o caso em que a string da URL é nula.
                                 print("A string da URL é nula.");
                               }
                             },
@@ -80,12 +81,12 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume!',
-                    style: TextStyle(fontSize: 25), // Set the desired font size
+                    style: TextStyle(fontSize: 25),
                   ),
                   SizedBox(height: 16.0),
                   Text(
                     'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar. Toque em um item da lista para ir para a página do artista.',
-                    style: TextStyle(fontSize: 20), // Set the desired font size
+                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
@@ -98,11 +99,7 @@ class _HomePageState extends State<HomePage> {
       child: ElevatedButton(
         onPressed: () {
           setState(() {
-            isListVisible = true;
-            controller.start(() async {
-              return await _repository.fetchMusicData(
-                  _repository.urlAll, "All");
-            });
+            isListVisible = false;
           });
         },
         style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
@@ -119,6 +116,7 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
+  //Método para gerenciar o estado e decidir qual widget deve ser renderizado com base no estado atual.
   stateManagement(HomeState state) {
     switch (state) {
       case HomeState.start:
@@ -132,17 +130,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // Forneça uma função anônima que chama fetchMusicData
-    controller.start(() async {
-      return await _repository.fetchMusicData(_repository.urlAll, "all");
-    });
-  }
-
-  // ...
-
+  //Método build que constrói a interface da tela usando o Scaffold do Flutter.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,12 +151,15 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      //Utilização de um AnimatedBuilder para reconstruir automaticamente a interface quando o estado muda.
+
       body: AnimatedBuilder(
         animation: controller.state,
         builder: (context, child) {
           return stateManagement(controller.state.value);
         },
       ),
+      //Configuração dos botões flutuantes que acionam diferentes ações na tela.
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -186,7 +177,7 @@ class _HomePageState extends State<HomePage> {
             },
             child: const Icon(Icons.public_outlined),
           ),
-          const SizedBox(width: 16.0), // Espaçamento entre os botões
+          const SizedBox(width: 16.0),
           FloatingActionButton(
             backgroundColor: Colors.green,
             onPressed: () {
@@ -230,5 +221,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-// ...
 }
