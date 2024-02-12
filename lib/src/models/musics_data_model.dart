@@ -1,44 +1,24 @@
 class Artist {
-  String? id;
-  String? name;
-  String? url;
-  String? picSmall;
-  String? picMedium;
-  String? uniques;
-  String? views;
-  String? rank;
+  // Propriedades da classe que representam informações sobre um artista.
+  String? name; // Nome do artista.
+  String? url; // URL associada ao artista.
+  String? picSmall; // URL da imagem pequena do artista.
+  String? views; // Quantidade de visualizações do artista.
 
-  Artist(
-      {this.id,
-      this.name,
-      required this.url,
-      this.picSmall,
-      this.picMedium,
-      this.uniques,
-      this.views,
-      this.rank});
+  // Construtor da classe Artist. Os parâmetros são opcionais e podem ser nulos.
+  Artist({
+    this.name, // Nome do artista.
+    this.url, // URL associada ao artista.
+    this.picSmall, // URL da imagem pequena do artista.
+    this.views, // Quantidade de visualizações do artista.
+  });
 
+  // Método de fábrica que cria uma instância da classe Artist a partir de um mapa (por exemplo, JSON).
   Artist.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    url = json['url'];
-    picSmall = json['pic_small'];
-    picMedium = json['pic_medium'];
-    uniques = json['uniques'];
-    views = json['views'];
-    rank = json['rank'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['url'] = this.url;
-    data['pic_small'] = this.picSmall;
-    data['pic_medium'] = this.picMedium;
-    data['uniques'] = this.uniques;
-    data['views'] = this.views;
-    data['rank'] = this.rank;
-    return data;
+    // Atribuição das propriedades com base nas chaves correspondentes no mapa.
+    name = json['name']; // Nome do artista.
+    url = json['url']; // URL associada ao artista.
+    picSmall = json['pic_small']; // URL da imagem pequena do artista.
+    views = json['views']; // Quantidade de visualizações do artista.
   }
 }
