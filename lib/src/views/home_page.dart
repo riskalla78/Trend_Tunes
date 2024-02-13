@@ -23,32 +23,34 @@ class _HomePageState extends State<HomePage> {
 //(_success, _error, _loading, _start).
   _success() {
     return isListVisible
-        ? SizedBox(
-            height: 500,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Center(
-                  child: Text(
-                    currentTitle,
-                    style: const TextStyle(fontSize: 20),
+        ? Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.musicdata.length,
-                    itemBuilder: (context, index) {
-                      var music = controller.musicdata[index];
-                      return ListTile(
+                  Center(
+                    child: Text(
+                      currentTitle,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.musicdata.length,
+                      itemBuilder: (context, index) {
+                        var music = controller.musicdata[index];
+                        return ListTile(
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
-                              music.picSmall ?? "No Pic",
+                              music.picSmall ?? "Imagem Indisponível",
                               width: 40,
                               height: 40,
                               fit: BoxFit.cover,
@@ -61,17 +63,18 @@ class _HomePageState extends State<HomePage> {
                                 Uri url = Uri.parse(urlNonNull!);
 
                                 launchUrl(url);
-                              } else {
-                                print("A string da URL é nula.");
                               }
                             },
                             child: Text(
-                                '${index + 1}º ${music.name ?? "No Name"} - ${music.views ?? "Sem visualizações disponíveis"} Views'),
-                          ));
-                    },
+                              '${index + 1}º ${music.name ?? "Nome do artista indisponível."} - ${music.views ?? "Sem visualizações disponíveis"} Views',
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         : const Center(
@@ -80,7 +83,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Text(
-                    'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume!',
+                    'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume no dia de hoje!',
                     style: TextStyle(fontSize: 25),
                   ),
                   SizedBox(height: 16.0),

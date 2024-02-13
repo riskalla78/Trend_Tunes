@@ -42,7 +42,7 @@ class MusicRepositorie {
         return musics;
       } else {
         // Lança uma exceção se o formato dos dados não for válido.
-        throw Exception("Invalid data format");
+        throw Exception("Formato de dados inválido.");
       }
     } catch (e) {
       // Trata diferentes tipos de erros e fornece feedbacks adequados ao usuário.
