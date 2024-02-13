@@ -20,7 +20,21 @@ Antes de começar, certifique-se de ter o Flutter instalado no seu sistema. Cons
 4. Certifique-se de ter um emulador ou dispositivo físico configurado e pronto para uso. Execute o seguinte comando para iniciar o aplicativo:
    ```bash
    flutter run
+   ```
+   Ou para Web:
+   ```bash
+   flutter run -d web
 
+## Compilar para Produção:
+- Android:
+  ```bash
+  flutter build apk
+- IOS:
+  ```bash
+  flutter build ios
+- Web:
+  ```bash
+  flutter build web
 ## Versões Utilizadas
 
 - Flutter 3.16.9
