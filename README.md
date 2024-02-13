@@ -1,6 +1,6 @@
-# Seu Projeto Flutter
+# Trend Tunes
 
-Este é um projeto Flutter incrível que faz [descrição curta do projeto].
+Este é um projeto Flutter que lista os artistas do topo do ranking em APIs de música.
 
 ## Pré-requisitos
 
