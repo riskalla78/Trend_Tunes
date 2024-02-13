@@ -33,4 +33,4 @@
 - Ranges de tempo:
   - Adicionar novos filtros de tempo, como mes e ano.
 - Gráficos:
-  - Implementes geradores de gráficos que exibam as views dos artistas ao longo do tempo e entre as diferentes plataformas.
+  - Implementar geradores de gráficos que exibam as views dos artistas ao longo do tempo e entre as diferentes plataformas.
