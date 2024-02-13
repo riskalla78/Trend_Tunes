@@ -1,6 +1,6 @@
 # Trend Tunes
 
-Este é um projeto Flutter que lista os artistas do topo do ranking em APIs de música.
+Este é um projeto Flutter que lista os artistas do topo do ranking em APIs de música, para medir seu desempenho em cada base de dados.
 
 ## Pré-requisitos
 
@@ -48,3 +48,5 @@ Antes de começar, certifique-se de ter o Flutter instalado no seu sistema. Cons
 
 - Flutter 3.16.9
 - Dart 3.2.6
+
+Para mais informações, leia o arquivo SOLUCAO.md!
