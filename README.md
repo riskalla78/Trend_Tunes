@@ -1,16 +1,27 @@
-# flutter_application_1
+# Seu Projeto Flutter
 
-A new Flutter project.
+Este é um projeto Flutter incrível que faz [descrição curta do projeto].
 
-## Getting Started
+## Pré-requisitos
 
-This project is a starting point for a Flutter application.
+Antes de começar, certifique-se de ter o Flutter instalado no seu sistema. Consulte a [documentação oficial do Flutter](https://flutter.dev/docs/get-started/install) para obter instruções de instalação.
 
-A few resources to get you started if this is your first Flutter project:
+## Instalação
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/riskalla78/music_flutter
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd seu-projeto-flutter
+3. Execute o seguinte comando para obter as dependências do projeto:
+   ```bash
+   flutter pub get
+4. Certifique-se de ter um emulador ou dispositivo físico configurado e pronto para uso. Execute o seguinte comando para iniciar o aplicativo:
+   ```bash
+   flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Versões Utilizadas
+
+- Flutter 3.16.9
+- Dart  3.2.6
