@@ -16,9 +16,9 @@ class Artist {
   // Método de fábrica que cria uma instância da classe Artist a partir de um mapa (por exemplo, JSON).
   Artist.fromJson(Map<String, dynamic> json) {
     // Atribuição das propriedades com base nas chaves correspondentes no mapa.
-    name = json['name']; // Nome do artista.
-    url = json['url']; // URL associada ao artista.
-    picSmall = json['pic_small']; // URL da imagem pequena do artista.
-    views = json['views']; // Quantidade de visualizações do artista.
+    name = json['name']; 
+    url = json['url']; 
+    picSmall = json['pic_small']; 
+    views = json['views'];
   }
 }
