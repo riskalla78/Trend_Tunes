@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/musics_data_model.dart';
-import 'package:flutter_application_1/src/repositories/music_repositorie.dart';
+import 'package:trend_tunes/src/models/musics_data_model.dart';
+import 'package:trend_tunes/src/repositories/music_repositorie.dart';
 
 /// Controller responsável por gerenciar o estado e a lógica de negócios da tela inicial.
 class HomeController {

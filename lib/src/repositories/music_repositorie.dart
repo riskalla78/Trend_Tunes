@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/src/models/musics_data_model.dart';
+import 'package:trend_tunes/src/models/musics_data_model.dart';
 
 class MusicRepositorie {
   // Instância do Dio para realizar requisições HTTP.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/controller/home_controller.dart';
-import 'package:flutter_application_1/src/repositories/music_repositorie.dart';
+import 'package:trend_tunes/src/controller/home_controller.dart';
+import 'package:trend_tunes/src/repositories/music_repositorie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //Declaração da classe HomePage, que é um StatefulWidget. createState() retorna uma instância de _HomePageState,
@@ -77,24 +77,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           )
-        : const Center(
-            child: Padding(
-              padding: EdgeInsets.all(30.0),
-              child: Column(
-                children: [
-                  Text(
-                    'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume no dia de hoje!',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  SizedBox(height: 16.0),
-                  Text(
-                    'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar. Toque em um item da lista para ir para a página do artista.',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            ),
-          );
+        : _start();
   }
 
   _error() {
@@ -116,7 +99,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   _start() {
-    return Container();
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            Text(
+              'Obtenha o ranking dos 20 artistas mais ouvidos no Vagalume no dia de hoje!',
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              'Clique no botão azul para o ranking geral, amarelo para o internacional, verde para o nacional e vermelho para resetar. Toque em um item da lista para ir para a página do artista.',
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   //Método para gerenciar o estado e decidir qual widget deve ser renderizado com base no estado atual.
