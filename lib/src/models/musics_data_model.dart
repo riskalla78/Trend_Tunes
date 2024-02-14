@@ -7,10 +7,10 @@ class Artist {
 
   // Construtor da classe Artist. Os parâmetros são opcionais e podem ser nulos.
   Artist({
-    this.name, // Nome do artista.
-    this.url, // URL associada ao artista.
-    this.picSmall, // URL da imagem pequena do artista.
-    this.views, // Quantidade de visualizações do artista.
+    this.name,
+    this.url, 
+    this.picSmall,
+    this.views,
   });
 
   // Método de fábrica que cria uma instância da classe Artist a partir de um mapa (por exemplo, JSON).
