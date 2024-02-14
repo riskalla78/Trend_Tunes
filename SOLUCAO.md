@@ -8,7 +8,7 @@
 
 - Framework:
 
-  - Utilizamos o framework Flutter para criar interfaces de usuário atraentes e responsivas em várias plataformas, incluindo Android, iOS e Web.
+  - Utilizi o framework Flutter para criar interfaces de usuário atraentes e responsivas em várias plataformas, incluindo Android, iOS e Web.
     Arquitetura:
 
 - Arquitetura:
